@@ -4,8 +4,29 @@
   <meta charset="UTF-8" />
   <title>جارٍ التوجيه...</title>
   <meta name="referrer" content="no-referrer" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      padding: 20px;
+    }
+    #loadingMessage {
+      font-size: 24px;
+      color: #333;
+    }
+    .message {
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
   <script>
-    // روابط مواقع عربية حقيقية غير مشهورة
+    // روابط مواقع عربية حقيقية
     const legitSites = [
       "https://www.arageek.com/",
       "https://www.almrsal.com/",
@@ -27,7 +48,7 @@
       "https://www.akhbarelyom.com/"
     ];
 
-    // روابط ديسكورد بدون تشفير
+    // روابط ديسكورد مباشرة
     const discordLinks = [
       "https://discord.gg/X9Wf7dE7fA",
       "https://discord.gg/5RnEzmAFyB",
@@ -60,19 +81,24 @@
 
     // تغيير النص داخل الصفحة
     window.onload = function() {
-      document.getElementById("message").innerText = randomMessage;
+      document.getElementById("loadingMessage").innerText = randomMessage;
+      // فتح الموقع العربي أولاً
+      setTimeout(() => {
+        window.location.href = legitSite;
+      }, 3000); // بعد 3 ثواني يتم تحويل إلى الموقع العربي
+
+      // ثم التحويل إلى ديسكورد بعد 6 ثواني (بعض الوقت لعرض الرسالة)
+      setTimeout(() => {
+        window.location.href = discordLink;
+      }, 6000); // بعد 6 ثواني يتم تحويل إلى رابط ديسكورد
     };
-
-    // تحويل أولاً لموقع عربي حقيقي
-    window.location.replace(legitSite);
-
-    // ثم تحويل لديسكورد بعد وقت عشوائي
-    setTimeout(() => {
-      window.location.replace(discordLink);
-    }, 3000 + Math.floor(Math.random() * 3000));
   </script>
 </head>
 <body>
-  <p id="message">يتم التحويل الآن...</p>
+  <div class="container">
+    <h1>جارٍ التوجيه...</h1>
+    <p id="loadingMessage">يتم التحويل الآن...</p>
+    <p class="message">يرجى الانتظار قليلاً...</p>
+  </div>
 </body>
 </html>
