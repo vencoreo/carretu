@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>جارٍ التوجيه...</title>
+  <meta name="referrer" content="no-referrer" />
+  <script>
+    function decode(base64) {
+      return atob(base64);
+    }
+
+    // روابط مواقع عربية حقيقية غير مشهورة
+    const legitSites = [
+      "https://www.arageek.com/",
+      "https://www.almrsal.com/",
+      "https://www.ngmisr.com/",
+      "https://www.thaqfya.com/",
+      "https://www.traidnt.net/",
+      "https://www.mosoah.com/",
+      "https://mawdoo3.com/",
+      "https://www.babonej.com/",
+      "https://www.ts3a.com/",
+      "https://www.rafed.net/",
+      "https://www.al-7ob.com/",
+      "https://www.almrsal.com/post/tag/تعليم",
+      "https://www.e3arabi.com/",
+      "https://www.kol7sry.news/",
+      "https://www.sayidaty.net/",
+      "https://www.almadenahnews.com/",
+      "https://www.albayan.ae/",
+      "https://www.akhbarelyom.com/"
+    ];
+
+    // روابط دعوة ديسكورد مشفرة
+    const discordLinks = [
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL1g5WDVmZGU3ZkE=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnLzVSbkV6bWFGYlk=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL2o1dFlFMm5ueFo=",
+      "aHR0cHM6Ly9kaXNjb3JkLmNvbS9pbnZpdGUvOGdmU1kzWnZxTQ==",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL040VFBUMmFSelA=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL2QyVHVIWW5Zc0E=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL05mTlJVdlpXdlI=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL2N4M2NhWXJLU1I="
+    ];
+
+    // رسائل عربية عشوائية
+    const messages = [
+      "يرجى الانتظار...",
+      "لحظة واحدة فقط...",
+      "سيتم تحويلك الآن...",
+      "من فضلك لا تغلق الصفحة...",
+      "جارٍ تحميل الصفحة...",
+      "نقوم بإعداد تجربتك...",
+      "ثوانٍ معدودة ويتم التحويل...",
+      "تابع معنا...",
+      "تجري معالجة الطلب...",
+      "تحميل الصفحة جارٍ الآن..."
+    ];
+
+    // اختيار عشوائي
+    const legitSite = legitSites[Math.floor(Math.random() * legitSites.length)];
+    const discordLink = decode(discordLinks[Math.floor(Math.random() * discordLinks.length)]);
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+    // تغيير النص داخل الصفحة
+    window.onload = function() {
+      document.getElementById("message").innerText = randomMessage;
+    };
+
+    // تحويل أولاً لموقع عربي حقيقي
+    window.location.href = legitSite;
+
+    // ثم تحويل لديسكورد بعد وقت عشوائي
+    setTimeout(() => {
+      window.location.href = discordLink;
+    }, 3000 + Math.floor(Math.random() * 3000));
+  </script>
+</head>
+<body>
+  <p id="message">يتم التحويل الآن...</p>
+</body>
+</html>
