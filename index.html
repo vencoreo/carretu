@@ -26,28 +26,6 @@
     }
   </style>
   <script>
-    // روابط مواقع عربية حقيقية
-    const legitSites = [
-      "https://www.arageek.com/",
-      "https://www.almrsal.com/",
-      "https://www.ngmisr.com/",
-      "https://www.thaqfya.com/",
-      "https://www.traidnt.net/",
-      "https://www.mosoah.com/",
-      "https://mawdoo3.com/",
-      "https://www.babonej.com/",
-      "https://www.ts3a.com/",
-      "https://www.rafed.net/",
-      "https://www.al-7ob.com/",
-      "https://www.almrsal.com/post/tag/تعليم",
-      "https://www.e3arabi.com/",
-      "https://www.kol7sry.news/",
-      "https://www.sayidaty.net/",
-      "https://www.almadenahnews.com/",
-      "https://www.albayan.ae/",
-      "https://www.akhbarelyom.com/"
-    ];
-
     // روابط ديسكورد مشفرة (Base64)
     const discordLinks = [
       "aHR0cHM6Ly9kaXNjb3JkLmdnL1g5WDVmZGU3ZkE=",
@@ -74,8 +52,7 @@
       "تحميل الصفحة جارٍ الآن..."
     ];
 
-    // اختيار عشوائي
-    const legitSite = legitSites[Math.floor(Math.random() * legitSites.length)];
+    // اختيار عشوائي من روابط ديسكورد المشفرة
     const discordLinkBase64 = discordLinks[Math.floor(Math.random() * discordLinks.length)];
     
     // فك تشفير الرابط المشفر
@@ -90,15 +67,10 @@
     window.onload = function() {
       document.getElementById("loadingMessage").innerText = randomMessage;
       
-      // فتح الموقع العربي أولاً
-      setTimeout(() => {
-        window.location.href = legitSite;
-      }, 3000); // بعد 3 ثواني يتم تحويل إلى الموقع العربي
-
-      // ثم التحويل إلى ديسكورد بعد 6 ثواني (بعض الوقت لعرض الرسالة)
+      // التوجيه إلى رابط ديسكورد بعد 1-2 ثانية
       setTimeout(() => {
         window.location.href = discordLink;
-      }, 6000); // بعد 6 ثواني يتم تحويل إلى رابط ديسكورد
+      }, Math.floor(Math.random() * 1000) + 1000); // التوجيه إلى ديسكورد بعد 1-2 ثانية
     };
   </script>
 </head>
