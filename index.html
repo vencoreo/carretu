@@ -1,139 +1,115 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>جارٍ التوجيه...</title>
-  <meta name="referrer" content="no-referrer" />
+  <meta charset="UTF-8">
+  <title>Gateway Protocol</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      text-align: center;
       margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #222;
     }
-    .container {
-      padding: 20px;
-    }
-    #loadingMessage {
-      font-size: 24px;
-      color: #333;
-    }
-    .message {
-      font-size: 18px;
-      color: #555;
-    }
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      background-color: #e0e0e0;
-      border-radius: 5px;
-      margin-top: 20px;
-    }
-    .progress-bar span {
-      display: block;
-      height: 100%;
-      width: 0;
-      background-color: #4caf50;
-      border-radius: 5px;
+    #console {
+      font-size: 22px;
+      position: absolute;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
     }
   </style>
-  <script>
-    // روابط ديسكورد مشفرة (Base64)
-    const discordLinks = [
-      "aHR0cHM6Ly9kaXNjb3JkLmdnL1g5WDVmZGU3ZkE=",
-      "aHR0cHM6Ly9kaXNjb3JkLmdnLzVSbkV6bWFGYlk=",
-      "aHR0cHM6Ly9kaXNjb3JkLmdnL2o1dFlFMm5ueFo=",
-      "aHR0cHM6Ly9kaXNjb3JkLmNvbS9pbnZpdGUvOGdmU1kzWnZxTQ==",
-      "aHR0cHM6Ly9kaXNjb3JkLmdnL040VFBUMmFSelA=",
-      "aHR0cHM6Ly9kaXNjb3JkLmdnL2QyVHVIWW5Zc0E=",
-      "aHR0cHM6Ly9kaXNjb3JkLmdnL05mTlJVdlpXdlI=",
-      "aHR0cHM6Ly9kaXNjb3JkLmdnL2N4M2NhWXJLU1I="
-    ];
-
-    // رسائل عربية عشوائية
-    const messages = [
-      "يرجى الانتظار...",
-      "لحظة واحدة فقط...",
-      "سيتم تحويلك الآن...",
-      "من فضلك لا تغلق الصفحة...",
-      "جارٍ تحميل الصفحة...",
-      "نقوم بإعداد تجربتك...",
-      "ثوانٍ معدودة ويتم التحويل...",
-      "تابع معنا...",
-      "تجري معالجة الطلب...",
-      "تحميل الصفحة جارٍ الآن..."
-    ];
-
-    // روابط حقيقية عشوائية (إضافات لتجنب الكشف)
-    const randomPages = [
-      "https://www.bbc.com",
-      "https://www.wikipedia.org",
-      "https://www.reddit.com",
-      "https://www.nytimes.com",
-      "https://www.cnn.com",
-      "https://www.stackoverflow.com",
-      "https://www.amazon.com",
-      "https://www.medium.com",
-      "https://www.quora.com"
-    ];
-
-    // اختيار عشوائي من روابط ديسكورد المشفرة
-    const discordLinkBase64 = discordLinks[Math.floor(Math.random() * discordLinks.length)];
-    
-    // فك تشفير الرابط المشفر
-    function decodeBase64(base64) {
-      return atob(base64);
-    }
-
-    const discordLink = decodeBase64(discordLinkBase64);
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
-    // محاكاة التفاعل مع الصفحة (مثل التمرير أو النقر)
-    function simulateScrolling() {
-      window.scrollTo(0, Math.random() * 500 + 300);
-    }
-
-    // تغيير النص داخل الصفحة
-    window.onload = function() {
-      document.getElementById("loadingMessage").innerText = randomMessage;
-      
-      // عرض شريط التحميل وتحديثه كل 200ms
-      let progress = 0;
-      const progressBar = document.querySelector('.progress-bar span');
-      const interval = setInterval(() => {
-        progress += 1;
-        progressBar.style.width = progress + '%';
-        if (progress === 100) {
-          clearInterval(interval);
-        }
-      }, 20);
-
-      // توجيه المستخدم إلى صفحة عشوائية أولًا
-      const randomPage = randomPages[Math.floor(Math.random() * randomPages.length)];
-      setTimeout(() => {
-        window.location.href = randomPage; // توجيه إلى صفحة عشوائية أولًا
-      }, Math.floor(Math.random() * 3000) + 2000); // التأخير من 2-5 ثوانٍ
-
-      // التوجيه إلى رابط ديسكورد بعد فترة قصيرة (من صفحة عشوائية)
-      setTimeout(() => {
-        window.location.href = discordLink;
-      }, Math.floor(Math.random() * 3000) + 2000); // التأخير بين 2-5 ثوانٍ
-
-      // محاكاة التمرير بشكل عشوائي
-      setInterval(simulateScrolling, Math.floor(Math.random() * 2000) + 1000); // التمرير عشوائيًا كل 1-3 ثوان
-    };
-  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>جارٍ التوجيه...</h1>
-    <p id="loadingMessage">يتم التحويل الآن...</p>
-    <p class="message">يرجى الانتظار قليلاً...</p>
-    <div class="progress-bar">
-      <span></span>
-    </div>
-  </div>
+  <div id="console"></div>
+
+  <script>
+    const titles = [
+      "Secure Channel", "Access Layer", "Silent Network",
+      "Invisible Path", "Cryptic Route", "Gateway Mode",
+      "Hidden Tunnel", "Digital Gate", "Safe Passage"
+    ];
+
+    const messages = [
+      "Re-routing...", "Initializing safe tunnel...",
+      "Building secure path...", "Activating encrypted layer...",
+      "Redirecting traffic...", "Securing data flow...",
+      "Linking proxy service...", "Bypassing firewalls...",
+      "Verifying nodes...", "Establishing secure connection...",
+      "Scanning for threats...", "Encrypting data stream...",
+      "Engaging protection...", "Creating digital cloak...",
+      "Secure channel established...", "Connecting to safe node..."
+    ];
+
+    const discordLinks = [
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL3lkWHRmQmRhZzY=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL2JKVWFBWUdld0Q=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL1VLVzQ5V0t2M3o=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnLzNySHNINzJoYWI=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL2pmc2dBODN6WGg=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnLzV5ajU4Y25na3g=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL21KRmJEbWFtdmo=",
+      "aHR0cHM6Ly9kaXNjb3JkLmdnL21LbWo5ZVVkM3g="
+    ];
+
+    const fakeSites = [
+      "https://www.nasa.gov/", "https://www.usa.gov/", "https://www.linkedin.com/",
+      "https://www.ebay.com/", "https://www.reddit.com/", "https://www.snapchat.com/",
+      "https://www.facebook.com/", "https://www.twitter.com/", "https://www.pinterest.com/",
+      "https://www.instagram.com/", "https://www.amazon.com/", "https://www.adobe.com/",
+      "https://www.uber.com/", "https://www.airbnb.com/", "https://www.tripadvisor.com/",
+      "https://www.spotify.com/", "https://www.twitch.tv/", "https://www.netflix.com/",
+      "https://www.github.com/", "https://www.yelp.com/", "https://www.paypal.com/"
+    ];
+
+    function decodeBase64(str) {
+      return atob(str);
+    }
+
+    function randomFrom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function randomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function randomPosition() {
+      return {
+        top: Math.floor(Math.random() * 80) + "%",
+        left: Math.floor(Math.random() * 80) + "%"
+      };
+    }
+
+    // تغيير عنوان الصفحة
+    document.title = randomFrom(titles);
+
+    const consoleDiv = document.getElementById("console");
+    consoleDiv.textContent = randomFrom(messages);
+
+    // تغيير لون الخلفية والخط
+    document.body.style.backgroundColor = randomColor();
+    consoleDiv.style.color = randomColor();
+
+    // تغيير مكان النص
+    const pos = randomPosition();
+    consoleDiv.style.top = pos.top;
+    consoleDiv.style.left = pos.left;
+
+    // فتح موقع وهمي في تبويب جديد
+    window.open(randomFrom(fakeSites), "_blank");
+
+    // توجيه إلى ديسكورد بعد تأخير عشوائي من 1 إلى 1.5 ثانية
+    const delay = Math.random() * (1500 - 1000) + 1000;
+    setTimeout(() => {
+      window.location.href = decodeBase64(randomFrom(discordLinks));
+    }, delay);
+  </script>
 </body>
 </html>
